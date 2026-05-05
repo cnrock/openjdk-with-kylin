@@ -25,9 +25,11 @@ RUN set -eux; \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # 可选：设置环境变量
-ENV JAVA_HOME=/usr/local/jdk17
-ENV PATH=$JAVA_HOME/bin:$PATH
-ENV LANG=C.UTF-8
+ENV JAVA_HOME=/usr/local/jdk17 \
+    PATH="${JAVA_HOME}/bin:${PATH}" \
+    LANG=zh_CN.UTF-8 \
+    LC_ALL=zh_CN.UTF-8 \
+    JAVA_TOOL_OPTIONS="-Duser.timezone=Asia/Shanghai"
 
 # --------- 3. 验证 / 运行示例 ---------
 # 注意：一个 Dockerfile 只能有一条 CMD，这里只保留 java -version
